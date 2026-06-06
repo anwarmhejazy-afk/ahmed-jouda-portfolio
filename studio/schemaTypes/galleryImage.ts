@@ -1,29 +1,33 @@
 import {defineField, defineType} from 'sanity'
 
-export const certificate = defineType({
-  name: 'certificate',
-  title: 'Certificates',
+export const galleryImage = defineType({
+  name: 'galleryImage',
+  title: 'Gallery Images',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Certificate Title',
+      title: 'Image Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'issuer',
-      title: 'Issued By',
+      name: 'category',
+      title: 'Category',
       type: 'string',
+      options: {
+        list: [
+          {title: 'Clinic', value: 'Clinic'},
+          {title: 'Doctor', value: 'Doctor'},
+          {title: 'Equipment', value: 'Equipment'},
+          {title: 'Dental Work', value: 'Dental Work'},
+          {title: 'Other', value: 'Other'},
+        ],
+      },
     }),
     defineField({
-      name: 'year',
-      title: 'Year',
-      type: 'number',
-    }),
-    defineField({
-      name: 'certificateImage',
-      title: 'Certificate Image',
+      name: 'image',
+      title: 'Image',
       type: 'image',
       options: {
         hotspot: true,
@@ -31,8 +35,8 @@ export const certificate = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'description',
-      title: 'Short Description',
+      name: 'caption',
+      title: 'Caption',
       type: 'text',
       rows: 3,
     }),
@@ -52,8 +56,8 @@ export const certificate = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'issuer',
-      media: 'certificateImage',
+      subtitle: 'category',
+      media: 'image',
     },
   },
 })

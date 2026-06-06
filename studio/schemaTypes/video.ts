@@ -1,34 +1,30 @@
 import {defineField, defineType} from 'sanity'
 
-export const certificate = defineType({
-  name: 'certificate',
-  title: 'Certificates',
+export const video = defineType({
+  name: 'video',
+  title: 'Videos',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Certificate Title',
+      title: 'Video Title',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'issuer',
-      title: 'Issued By',
-      type: 'string',
+      name: 'videoUrl',
+      title: 'Video URL',
+      type: 'url',
+      description: 'Instagram Reel, YouTube, TikTok, or any public video link.',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'year',
-      title: 'Year',
-      type: 'number',
-    }),
-    defineField({
-      name: 'certificateImage',
-      title: 'Certificate Image',
+      name: 'thumbnail',
+      title: 'Video Thumbnail',
       type: 'image',
       options: {
         hotspot: true,
       },
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
@@ -52,8 +48,8 @@ export const certificate = defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'issuer',
-      media: 'certificateImage',
+      subtitle: 'videoUrl',
+      media: 'thumbnail',
     },
   },
 })
