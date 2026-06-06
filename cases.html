@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الحالات السريرية | د. أحمد ماهر جودة</title>
-  <meta name="description" content="حالات سريرية مختارة لد. أحمد ماهر جودة في علاج الجذور وتشخيص آلام الأسنان." />
+  <title>الأعمال والحالات | د. أحمد ماهر جودة</title>
+  <meta name="description" content="الأعمال السريرية، الشهادات، الفيديوهات، وصور المعرض الخاصة بد. أحمد ماهر جودة." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
@@ -25,7 +26,7 @@
         <a href="index.html" data-ar="الرئيسية" data-en="Home">الرئيسية</a>
         <a href="about.html" data-ar="عن الدكتور" data-en="About">عن الدكتور</a>
         <a href="services.html" data-ar="الخدمات" data-en="Services">الخدمات</a>
-        <a class="active" href="cases.html" data-ar="الحالات" data-en="Cases">الحالات</a>
+        <a class="active" href="cases.html" data-ar="الأعمال" data-en="Work">الأعمال</a>
         <a href="contact.html" data-ar="التواصل" data-en="Contact">التواصل</a>
       </nav>
 
@@ -39,50 +40,75 @@
   <main>
     <section class="page-hero section">
       <div class="container narrow">
-        <p class="eyebrow" data-ar="الحالات السريرية" data-en="Clinical Cases">الحالات السريرية</p>
-        <h1 data-ar="حالات مختارة" data-en="Selected Cases">حالات مختارة</h1>
-        <p data-ar="سيتم إضافة الحالات والصور والأشعة بعد موافقة الدكتور والتأكد من عدم وجود أي بيانات شخصية للمرضى." data-en="Cases, images, and X-rays will be added after the doctor’s approval and after making sure no patient personal data is visible.">
-          سيتم إضافة الحالات والصور والأشعة بعد موافقة الدكتور والتأكد من عدم وجود أي بيانات شخصية للمرضى.
+        <p class="eyebrow" data-ar="الأعمال والمعرض" data-en="Work & Gallery">الأعمال والمعرض</p>
+
+        <h1 data-ar="الحالات، الشهادات، الفيديوهات والصور" data-en="Cases, Certificates, Videos & Images">
+          الحالات، الشهادات، الفيديوهات والصور
+        </h1>
+
+        <p data-ar="هذا القسم يتم تحديثه من خلال لوحة Sanity، ويعرض فقط المحتوى الذي تم اعتماده للنشر." data-en="This section is updated from Sanity Studio and only shows content approved for publishing.">
+          هذا القسم يتم تحديثه من خلال لوحة Sanity، ويعرض فقط المحتوى الذي تم اعتماده للنشر.
         </p>
       </div>
     </section>
 
     <section class="section">
-      <div class="container case-grid">
-        <article class="case-card">
-          <div class="case-image">X-Ray</div>
-          <div>
-            <span data-ar="علاج جذور" data-en="Endodontics">علاج جذور</span>
-            <h3 data-ar="حالة علاج جذور معقدة" data-en="Complex Root Canal Case">حالة علاج جذور معقدة</h3>
-            <p data-ar="وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio." data-en="Short case description will later be added from Sanity Studio.">وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio.</p>
-          </div>
-        </article>
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label" data-ar="الأعمال السريرية" data-en="Clinical Work">الأعمال السريرية</p>
+          <h2 data-ar="حالات وأعمال مختارة" data-en="Selected Clinical Work">حالات وأعمال مختارة</h2>
+        </div>
 
-        <article class="case-card">
-          <div class="case-image">Molar</div>
-          <div>
-            <span data-ar="ضرس خلفي" data-en="Molar Case">ضرس خلفي</span>
-            <h3 data-ar="علاج جذور لضرس خلفي" data-en="Lower Molar Treatment">علاج جذور لضرس خلفي</h3>
-            <p data-ar="وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio." data-en="Short case description will later be added from Sanity Studio.">وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio.</p>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <div class="case-image">Pain</div>
-          <div>
-            <span data-ar="تشخيص" data-en="Diagnosis">تشخيص</span>
-            <h3 data-ar="تشخيص ألم الأسنان" data-en="Dental Pain Diagnosis">تشخيص ألم الأسنان</h3>
-            <p data-ar="وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio." data-en="Short case description will later be added from Sanity Studio.">وصف مختصر للحالة سيتم إضافته لاحقاً من Sanity Studio.</p>
-          </div>
-        </article>
+        <div id="clinicalWorkGrid" class="case-grid dynamic-grid">
+          <p class="loading-message" data-ar="جاري تحميل الأعمال..." data-en="Loading clinical work...">جاري تحميل الأعمال...</p>
+        </div>
       </div>
     </section>
 
     <section class="section soft-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label" data-ar="الشهادات" data-en="Certificates">الشهادات</p>
+          <h2 data-ar="الشهادات والدورات" data-en="Certificates & Training">الشهادات والدورات</h2>
+        </div>
+
+        <div id="certificatesGrid" class="case-grid dynamic-grid">
+          <p class="loading-message" data-ar="جاري تحميل الشهادات..." data-en="Loading certificates...">جاري تحميل الشهادات...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label" data-ar="الفيديوهات" data-en="Videos">الفيديوهات</p>
+          <h2 data-ar="فيديوهات تعليمية أو مهنية" data-en="Educational or Professional Videos">فيديوهات تعليمية أو مهنية</h2>
+        </div>
+
+        <div id="videosGrid" class="case-grid dynamic-grid">
+          <p class="loading-message" data-ar="جاري تحميل الفيديوهات..." data-en="Loading videos...">جاري تحميل الفيديوهات...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-label" data-ar="معرض الصور" data-en="Image Gallery">معرض الصور</p>
+          <h2 data-ar="صور العيادة والأعمال" data-en="Clinic & Work Images">صور العيادة والأعمال</h2>
+        </div>
+
+        <div id="galleryGrid" class="case-grid dynamic-grid">
+          <p class="loading-message" data-ar="جاري تحميل الصور..." data-en="Loading images...">جاري تحميل الصور...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="container warning-card">
         <h2 data-ar="ملاحظة مهمة" data-en="Important Note">ملاحظة مهمة</h2>
-        <p data-ar="أي حالة سريرية سيتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية." data-en="Any published clinical case must not include the patient’s name, face, phone number, or any personal information that reveals identity.">
-          أي حالة سريرية سيتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية.
+        <p data-ar="أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية." data-en="Any published case or image must not include the patient’s name, face, phone number, or any personal information that reveals identity.">
+          أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية.
         </p>
       </div>
     </section>
