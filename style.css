@@ -2054,3 +2054,82 @@ html[dir="ltr"] h3 {
     unicode-bidi: isolate !important;
   }
 }
+
+/* Professional doctor-focused hero polish */
+.page-hero {
+  padding-top: 72px !important;
+  padding-bottom: 72px !important;
+}
+
+.page-hero .eyebrow,
+.hero .eyebrow {
+  background: rgba(233, 247, 252, 0.92);
+  color: #1d8fbd;
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .page-hero h1 {
+  max-width: 880px;
+  font-size: clamp(38px, 5vw, 64px) !important;
+  line-height: 1.22 !important;
+  font-weight: 700 !important;
+}
+
+html[dir="ltr"] .page-hero h1 {
+  max-width: 820px;
+  font-size: clamp(38px, 5vw, 62px) !important;
+  line-height: 1.12 !important;
+}
+
+.page-hero p {
+  max-width: 780px;
+  font-size: 17px;
+  color: #64748b;
+  line-height: 1.9;
+}
+
+html[dir="rtl"] .hero h1 {
+  font-size: clamp(44px, 5.8vw, 72px) !important;
+  line-height: 1.18 !important;
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .hero h2 {
+  max-width: 760px;
+  font-size: clamp(28px, 3.4vw, 42px) !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+}
+
+.hero-text {
+  max-width: 720px;
+}
+
+/* Mobile hero polish */
+@media (max-width: 700px) {
+  .page-hero {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+
+  html[dir="rtl"] .page-hero h1,
+  html[dir="ltr"] .page-hero h1 {
+    font-size: 33px !important;
+    line-height: 1.28 !important;
+  }
+
+  .page-hero p {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  html[dir="rtl"] .hero h1 {
+    font-size: 34px !important;
+    line-height: 1.22 !important;
+  }
+
+  html[dir="rtl"] .hero h2 {
+    font-size: 23px !important;
+    line-height: 1.4 !important;
+  }
+}
