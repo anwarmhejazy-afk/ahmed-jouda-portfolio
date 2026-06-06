@@ -6,6 +6,7 @@ const contactForm = document.getElementById("contactForm");
 
 let currentLang = localStorage.getItem("siteLang") || "ar";
 let allClinicalWorkItems = [];
+let allGalleryItems = [];
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -239,22 +240,33 @@ function renderGallery(items) {
   const grid = document.getElementById("galleryGrid");
   if (!grid) return;
 
+  allGalleryItems = items;
+
   if (!items.length) {
     grid.innerHTML = emptyMessage("لم يتم نشر أي صور حتى الآن.", "No images have been published yet.");
     setLanguage(currentLang);
     return;
   }
 
-  grid.innerHTML = items.map((item) => `
-    <article class="media-card">
+  grid.innerHTML = items.map((item, index) => `
+    <article class="media-card compact-gallery-card">
       ${imageBlock(item.image?.asset?.url, item.title, "Gallery")}
       <div class="media-content">
         <span class="media-tag">${item.category || "Gallery"}</span>
         <h3>${item.title || "Gallery Image"}</h3>
-        <p>${item.caption || ""}</p>
+        <button class="view-details-btn" type="button" data-gallery-index="${index}" data-ar="عرض الصورة" data-en="View Image">
+          ${currentLang === "ar" ? "عرض الصورة" : "View Image"}
+        </button>
       </div>
     </article>
   `).join("");
+
+  document.querySelectorAll("[data-gallery-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.galleryIndex);
+      openGalleryModal(allGalleryItems[index]);
+    });
+  });
 }
 
 function buildCaseModalImage(url, label) {
@@ -266,6 +278,30 @@ function buildCaseModalImage(url, label) {
       <span>${label}</span>
     </a>
   `;
+}
+
+function openGalleryModal(item) {
+  const modal = document.getElementById("caseModal");
+  const body = document.getElementById("caseModalBody");
+
+  if (!modal || !body || !item) return;
+
+  const imageUrl = item.image?.asset?.url;
+
+  body.innerHTML = `
+    <span class="media-tag">${item.category || "Gallery"}</span>
+    <h2>${item.title || "Gallery Image"}</h2>
+    <p>${item.caption || ""}</p>
+
+    ${imageUrl ? `
+      <div class="single-modal-image">
+        <img src="${imageUrl}" alt="${item.title || "Gallery Image"}">
+      </div>
+    ` : ""}
+  `;
+
+  modal.classList.add("open");
+  document.body.classList.add("modal-open");
 }
 
 function openCaseModal(item) {

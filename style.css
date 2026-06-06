@@ -1298,3 +1298,342 @@ p {
     font-size: 12px;
   }
 }
+
+/* Final mobile polish: homepage brand card, CTA buttons, work cards */
+@media (max-width: 700px) {
+  .hero-card {
+    margin-top: 28px;
+    padding: 12px;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.96);
+  }
+
+  .brand-hero-photo {
+    min-height: 250px;
+    border-radius: 22px;
+    display: grid;
+    place-items: center;
+  }
+
+  .brand-hero-photo img {
+    width: 62%;
+    max-width: 210px;
+    border-radius: 28px;
+    display: block;
+  }
+
+  .premium-cta {
+    padding: 28px 20px;
+  }
+
+  .premium-cta .contact-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .premium-cta .contact-actions .btn {
+    width: 100%;
+    min-width: 0;
+    padding: 11px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .work-section-head {
+    text-align: start;
+  }
+
+  .work-section-head > span {
+    margin-bottom: 2px;
+  }
+
+  .case-two-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+  }
+
+  .case-two-grid .media-card {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .case-two-grid .media-image img {
+    height: 145px;
+    object-fit: cover;
+  }
+
+  .case-two-grid .media-placeholder {
+    min-height: 145px;
+    font-size: 16px;
+  }
+
+  .case-two-grid .media-content {
+    padding: 13px;
+  }
+
+  .case-two-grid .media-tag {
+    font-size: 10px;
+    margin-bottom: 6px;
+  }
+
+  .case-two-grid .media-content h3 {
+    font-size: 14px;
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .case-two-grid .media-content p {
+    display: none;
+  }
+
+  .case-two-grid .view-details-btn,
+  .case-two-grid .text-link {
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 10px;
+    font-size: 11px;
+    margin-top: 8px;
+  }
+
+  /* If there is only one dynamic item, make it look intentional instead of tiny */
+  .case-two-grid .media-card:only-child {
+    max-width: 260px;
+    justify-self: center;
+    width: 100%;
+  }
+
+  .privacy-card {
+    text-align: start;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .page-hero h1 {
+    font-size: 34px;
+  }
+
+  .case-two-grid .media-image img {
+    height: 132px;
+  }
+
+  .brand-hero-photo {
+    min-height: 235px;
+  }
+}
+
+/* Final Work page mobile polish */
+@media (max-width: 700px) {
+  .work-hero {
+    padding-top: 46px;
+    padding-bottom: 38px;
+  }
+
+  .work-tabs {
+    margin-top: 22px;
+  }
+
+  .work-section {
+    padding: 44px 0;
+  }
+
+  .work-section-head {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    align-items: start;
+    text-align: start;
+  }
+
+  .work-section-head > span {
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .work-section-head .section-label {
+    margin-bottom: 10px;
+  }
+
+  .work-section-head h2 {
+    font-size: 28px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .work-section-head p:last-child {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .empty-state {
+    font-size: 14px;
+    padding: 20px 16px;
+  }
+
+  /* Clinical case cards stay two in a row when real cases are added */
+  #clinicalWorkGrid.case-two-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Gallery should look premium if there is only one image */
+  #galleryGrid.case-two-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-image img {
+    height: 230px;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content {
+    padding: 20px;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content h3 {
+    font-size: 20px;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content p {
+    display: block;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-tag {
+    font-size: 12px;
+  }
+
+  .privacy-card {
+    padding: 24px;
+  }
+
+  .privacy-card h2 {
+    font-size: 28px;
+  }
+
+  .privacy-card p {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}
+
+/* Compact Work page solution: keep page short even with many images */
+@media (max-width: 700px) {
+  /* Remove the big single-image gallery behavior */
+  #galleryGrid.case-two-grid .media-card:only-child {
+    grid-column: auto !important;
+    max-width: none !important;
+    width: auto !important;
+    justify-self: stretch !important;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-image img {
+    height: 132px !important;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content {
+    padding: 13px !important;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content h3 {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  #galleryGrid.case-two-grid .media-card:only-child .media-content p {
+    display: none !important;
+  }
+
+  /* All case/gallery cards stay compact */
+  #clinicalWorkGrid,
+  #galleryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+  }
+
+  .compact-case-card,
+  .compact-gallery-card {
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+
+  .compact-case-card .media-image img,
+  .compact-gallery-card .media-image img {
+    height: 132px !important;
+    object-fit: cover !important;
+  }
+
+  .compact-case-card .media-placeholder,
+  .compact-gallery-card .media-placeholder {
+    min-height: 132px !important;
+    font-size: 15px !important;
+  }
+
+  .compact-case-card .media-content,
+  .compact-gallery-card .media-content {
+    padding: 13px !important;
+  }
+
+  .compact-case-card .media-tag,
+  .compact-gallery-card .media-tag {
+    font-size: 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .compact-case-card h3,
+  .compact-gallery-card h3 {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .compact-case-card p,
+  .compact-gallery-card p {
+    display: none !important;
+  }
+
+  .compact-case-card .view-details-btn,
+  .compact-gallery-card .view-details-btn {
+    width: 100% !important;
+    min-height: 36px !important;
+    padding: 8px 8px !important;
+    font-size: 11px !important;
+    margin-top: 6px !important;
+    box-shadow: none !important;
+  }
+
+  /* Keep certificates/videos normal unless they become too many later */
+  #certificatesGrid,
+  #videosGrid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Modal image view */
+  .single-modal-image {
+    margin-top: 18px;
+    border-radius: 22px;
+    overflow: hidden;
+    background: var(--soft-blue);
+  }
+
+  .single-modal-image img {
+    width: 100%;
+    display: block;
+    max-height: 70vh;
+    object-fit: contain;
+    background: #f8fbfd;
+  }
+}
