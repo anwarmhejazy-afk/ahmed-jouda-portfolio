@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>الأعمال والحالات | د. أحمد ماهر جودة</title>
   <meta name="description" content="الأعمال السريرية، الشهادات، الفيديوهات، وصور المعرض الخاصة بد. أحمد ماهر جودة." />
+
   <link rel="icon" type="image/png" href="images/logo-dark.png" />
   <link rel="stylesheet" href="style.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -32,114 +35,151 @@
       </nav>
 
       <div class="header-actions">
-        <button class="lang-toggle" id="langToggle">English</button>
+        <button class="lang-toggle" id="langToggle">EN</button>
         <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="page-hero section">
+  <main class="work-page">
+    <section class="page-hero work-hero section">
       <div class="container narrow">
         <p class="eyebrow" data-ar="الأعمال والمعرض" data-en="Work & Gallery">الأعمال والمعرض</p>
 
-        <h1 data-ar="الحالات، الشهادات، الفيديوهات والصور" data-en="Cases, Certificates, Videos & Images">
-          الحالات، الشهادات، الفيديوهات والصور
+        <h1 data-ar="الأعمال السريرية والشهادات والمعرض" data-en="Clinical Work, Certificates & Gallery">
+          الأعمال السريرية والشهادات والمعرض
         </h1>
 
-        <p data-ar="هذا القسم يتم تحديثه من خلال لوحة Sanity، ويعرض فقط المحتوى الذي تم اعتماده للنشر." data-en="This section is updated from Sanity Studio and only shows content approved for publishing.">
-          هذا القسم يتم تحديثه من خلال لوحة Sanity، ويعرض فقط المحتوى الذي تم اعتماده للنشر.
+        <p data-ar="صفحة مخصصة لعرض الحالات، الشهادات، الفيديوهات، وصور العيادة التي يتم رفعها من خلال لوحة Sanity بعد اعتمادها للنشر." data-en="A dedicated page for approved clinical work, certificates, videos, and clinic images uploaded through Sanity Studio.">
+          صفحة مخصصة لعرض الحالات، الشهادات، الفيديوهات، وصور العيادة التي يتم رفعها من خلال لوحة Sanity بعد اعتمادها للنشر.
         </p>
+
+        <div class="work-tabs">
+          <a href="#clinicalWorkSection" data-ar="الحالات" data-en="Cases">الحالات</a>
+          <a href="#certificatesSection" data-ar="الشهادات" data-en="Certificates">الشهادات</a>
+          <a href="#videosSection" data-ar="الفيديوهات" data-en="Videos">الفيديوهات</a>
+          <a href="#gallerySection" data-ar="الصور" data-en="Images">الصور</a>
+        </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section work-section" id="clinicalWorkSection">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-label" data-ar="الأعمال السريرية" data-en="Clinical Work">الأعمال السريرية</p>
-          <h2 data-ar="حالات وأعمال مختارة" data-en="Selected Clinical Work">حالات وأعمال مختارة</h2>
+        <div class="work-section-head">
+          <span>01</span>
+          <div>
+            <p class="section-label" data-ar="الأعمال السريرية" data-en="Clinical Work">الأعمال السريرية</p>
+            <h2 data-ar="حالات مختارة" data-en="Selected Cases">حالات مختارة</h2>
+            <p data-ar="يتم عرض الحالات في بطاقات مختصرة، ويمكن فتح التفاصيل لمشاهدة الصور والفيديوهات المرتبطة بالحالة." data-en="Cases are shown as short cards. Open the details to view related images and videos.">
+              يتم عرض الحالات في بطاقات مختصرة، ويمكن فتح التفاصيل لمشاهدة الصور والفيديوهات المرتبطة بالحالة.
+            </p>
+          </div>
         </div>
 
-        <div id="clinicalWorkGrid" class="case-grid dynamic-grid">
-          <p class="loading-message" data-ar="جاري تحميل الأعمال..." data-en="Loading clinical work...">جاري تحميل الأعمال...</p>
+        <div id="clinicalWorkGrid" class="media-grid case-two-grid">
+          <div class="empty-state" data-ar="جاري تحميل الحالات..." data-en="Loading clinical work...">جاري تحميل الحالات...</div>
         </div>
       </div>
     </section>
 
-    <section class="section soft-section">
+    <section class="section work-section soft-section" id="certificatesSection">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-label" data-ar="الشهادات" data-en="Certificates">الشهادات</p>
-          <h2 data-ar="الشهادات والدورات" data-en="Certificates & Training">الشهادات والدورات</h2>
+        <div class="work-section-head">
+          <span>02</span>
+          <div>
+            <p class="section-label" data-ar="الشهادات" data-en="Certificates">الشهادات</p>
+            <h2 data-ar="الشهادات والدورات" data-en="Certificates & Training">الشهادات والدورات</h2>
+            <p data-ar="مساحة لعرض الشهادات، الدورات، والإنجازات المهنية." data-en="A space for certificates, training, and professional achievements.">
+              مساحة لعرض الشهادات، الدورات، والإنجازات المهنية.
+            </p>
+          </div>
         </div>
 
-        <div id="certificatesGrid" class="case-grid dynamic-grid">
-          <p class="loading-message" data-ar="جاري تحميل الشهادات..." data-en="Loading certificates...">جاري تحميل الشهادات...</p>
+        <div id="certificatesGrid" class="media-grid">
+          <div class="empty-state" data-ar="جاري تحميل الشهادات..." data-en="Loading certificates...">جاري تحميل الشهادات...</div>
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section work-section" id="videosSection">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-label" data-ar="الفيديوهات" data-en="Videos">الفيديوهات</p>
-          <h2 data-ar="فيديوهات تعليمية أو مهنية" data-en="Educational or Professional Videos">فيديوهات تعليمية أو مهنية</h2>
+        <div class="work-section-head">
+          <span>03</span>
+          <div>
+            <p class="section-label" data-ar="الفيديوهات" data-en="Videos">الفيديوهات</p>
+            <h2 data-ar="فيديوهات تعليمية أو مهنية" data-en="Educational or Professional Videos">فيديوهات تعليمية أو مهنية</h2>
+            <p data-ar="روابط فيديوهات من إنستجرام أو يوتيوب أو أي منصة مناسبة." data-en="Video links from Instagram, YouTube, or other suitable platforms.">
+              روابط فيديوهات من إنستجرام أو يوتيوب أو أي منصة مناسبة.
+            </p>
+          </div>
         </div>
 
-        <div id="videosGrid" class="case-grid dynamic-grid">
-          <p class="loading-message" data-ar="جاري تحميل الفيديوهات..." data-en="Loading videos...">جاري تحميل الفيديوهات...</p>
+        <div id="videosGrid" class="media-grid">
+          <div class="empty-state" data-ar="جاري تحميل الفيديوهات..." data-en="Loading videos...">جاري تحميل الفيديوهات...</div>
         </div>
       </div>
     </section>
 
-    <section class="section soft-section">
+    <section class="section work-section soft-section" id="gallerySection">
       <div class="container">
-        <div class="section-heading">
-          <p class="section-label" data-ar="معرض الصور" data-en="Image Gallery">معرض الصور</p>
-          <h2 data-ar="صور العيادة والأعمال" data-en="Clinic & Work Images">صور العيادة والأعمال</h2>
+        <div class="work-section-head">
+          <span>04</span>
+          <div>
+            <p class="section-label" data-ar="معرض الصور" data-en="Image Gallery">معرض الصور</p>
+            <h2 data-ar="صور العيادة والأعمال" data-en="Clinic & Work Images">صور العيادة والأعمال</h2>
+            <p data-ar="صور العيادة، الأجهزة، أو نماذج من الأعمال بعد الموافقة." data-en="Clinic images, equipment photos, or approved work examples.">
+              صور العيادة، الأجهزة، أو نماذج من الأعمال بعد الموافقة.
+            </p>
+          </div>
         </div>
 
-        <div id="galleryGrid" class="case-grid dynamic-grid">
-          <p class="loading-message" data-ar="جاري تحميل الصور..." data-en="Loading images...">جاري تحميل الصور...</p>
+        <div id="galleryGrid" class="media-grid case-two-grid">
+          <div class="empty-state" data-ar="جاري تحميل الصور..." data-en="Loading images...">جاري تحميل الصور...</div>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container warning-card">
-        <h2 data-ar="ملاحظة مهمة" data-en="Important Note">ملاحظة مهمة</h2>
-        <p data-ar="أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية." data-en="Any published case or image must not include the patient’s name, face, phone number, or any personal information that reveals identity.">
-          أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية.
-        </p>
+    <section class="section privacy-section">
+      <div class="container">
+        <div class="privacy-card">
+          <p class="section-label" data-ar="خصوصية المرضى" data-en="Patient Privacy">خصوصية المرضى</p>
+          <h2 data-ar="ملاحظة مهمة" data-en="Important Note">ملاحظة مهمة</h2>
+          <p data-ar="أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية." data-en="Any published case or image must not include the patient’s name, face, phone number, or any personal information that reveals identity.">
+            أي حالة أو صورة يتم نشرها يجب ألا تحتوي على اسم المريض أو وجهه أو رقم الهاتف أو أي بيانات شخصية تكشف الهوية.
+          </p>
+        </div>
       </div>
     </section>
   </main>
 
-  
-  
-  
+  <div class="case-modal" id="caseModal" aria-hidden="true">
+    <div class="case-modal-backdrop" data-close-modal></div>
+    <div class="case-modal-panel">
+      <button class="case-modal-close" type="button" data-close-modal>×</button>
+      <div id="caseModalBody"></div>
+    </div>
+  </div>
+
   <footer class="site-footer premium-footer">
-    <div class="container footer-inner premium-footer-inner">
-      <div class="footer-brand-block">
+    <div class="container premium-footer-inner">
+      <div class="footer-main">
+        <img class="footer-logo" src="images/logo-dark.png" alt="AJ Endodontics logo" />
         <h3 data-ar="د. أحمد ماهر جودة" data-en="Dr. Ahmed Maher Jouda">د. أحمد ماهر جودة</h3>
         <p data-ar="طبيب أسنان | علاج الجذور" data-en="Dentist | Endodontics">طبيب أسنان | علاج الجذور</p>
+        <a class="footer-instagram ltr-text" href="https://www.instagram.com/ahmedjoudaa" target="_blank" rel="noopener">@ahmedjoudaa</a>
       </div>
 
-      <div class="footer-center-block">
+      <div class="footer-bottom">
         <p>© <span id="year"></span> <span data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">جميع الحقوق محفوظة.</span></p>
         <a class="footer-credit-text" href="https://anwarhegazy-porfolio.vercel.app/" target="_blank" rel="noopener">
           Designed &amp; developed by Anwar Hegazy
         </a>
       </div>
-
-      <div class="footer-social-block">
-        <a class="footer-instagram" href="https://www.instagram.com/ahmedjoudaa" target="_blank" rel="noopener">
-          <span>@ahmedjoudaa</span>
-        </a>
-      </div>
     </div>
   </footer>
 
-  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button><script src="script.js"></script>
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
 </body>
 </html>

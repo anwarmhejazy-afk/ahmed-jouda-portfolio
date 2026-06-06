@@ -5,9 +5,22 @@ const year = document.getElementById("year");
 const contactForm = document.getElementById("contactForm");
 
 let currentLang = localStorage.getItem("siteLang") || "ar";
+let allClinicalWorkItems = [];
 
 if (year) {
   year.textContent = new Date().getFullYear();
+}
+
+function updateLanguageButton(lang) {
+  if (!langToggle) return;
+
+  if (lang === "ar") {
+    langToggle.textContent = "EN";
+    langToggle.setAttribute("aria-label", "Switch to English");
+  } else {
+    langToggle.textContent = "AR";
+    langToggle.setAttribute("aria-label", "Switch to Arabic");
+  }
 }
 
 function setLanguage(lang) {
@@ -15,20 +28,14 @@ function setLanguage(lang) {
   localStorage.setItem("siteLang", lang);
 
   document.documentElement.lang = lang;
-
-  if (lang === "ar") {
-    document.documentElement.dir = "rtl";
-    document.body.classList.remove("en");
-    if (langToggle) langToggle.textContent = "English";
-  } else {
-    document.documentElement.dir = "ltr";
-    document.body.classList.add("en");
-    if (langToggle) langToggle.textContent = "العربية";
-  }
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.body.classList.toggle("en", lang === "en");
 
   document.querySelectorAll("[data-ar][data-en]").forEach((element) => {
     element.textContent = element.dataset[lang];
   });
+
+  updateLanguageButton(lang);
 }
 
 if (langToggle) {
@@ -37,17 +44,66 @@ if (langToggle) {
   });
 }
 
-if (menuToggle && mainNav) {
-  menuToggle.addEventListener("click", () => {
-    mainNav.classList.toggle("open");
-  });
+function closeMobileMenu() {
+  if (!mainNav || !menuToggle) return;
+
+  mainNav.classList.remove("open");
+  document.body.classList.remove("menu-open");
+  menuToggle.setAttribute("aria-expanded", "false");
+  menuToggle.textContent = "☰";
 }
 
-document.querySelectorAll(".main-nav a").forEach((link) => {
-  link.addEventListener("click", () => {
-    if (mainNav) mainNav.classList.remove("open");
+function openMobileMenu() {
+  if (!mainNav || !menuToggle) return;
+
+  mainNav.classList.add("open");
+  document.body.classList.add("menu-open");
+  menuToggle.setAttribute("aria-expanded", "true");
+  menuToggle.textContent = "×";
+}
+
+if (menuToggle && mainNav) {
+  menuToggle.setAttribute("aria-expanded", "false");
+
+  menuToggle.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (mainNav.classList.contains("open")) {
+      closeMobileMenu();
+    } else {
+      openMobileMenu();
+    }
   });
-});
+
+  mainNav.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
+
+  document.querySelectorAll(".main-nav a").forEach((link) => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("href");
+      closeMobileMenu();
+
+      if (href) {
+        window.location.href = href;
+      }
+    });
+  });
+
+  document.addEventListener("click", () => {
+    if (mainNav.classList.contains("open")) {
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeMobileMenu();
+      closeCaseModal();
+    }
+  });
+}
 
 if (contactForm) {
   contactForm.addEventListener("submit", (event) => {
@@ -63,7 +119,7 @@ if (contactForm) {
   });
 }
 
-/* Sanity connection for dynamic media uploads */
+/* Sanity connection */
 const SANITY_PROJECT_ID = "5ukublyt";
 const SANITY_DATASET = "production";
 const SANITY_API_VERSION = "2025-06-06";
@@ -74,6 +130,7 @@ function sanityQueryUrl(query) {
 
 async function fetchSanity(query) {
   const response = await fetch(sanityQueryUrl(query));
+
   if (!response.ok) {
     throw new Error("Failed to fetch Sanity content");
   }
@@ -82,56 +139,54 @@ async function fetchSanity(query) {
   return data.result || [];
 }
 
-function fallbackImage(label) {
-  return `
-    <div class="case-image dynamic-placeholder">
-      ${label}
-    </div>
-  `;
-}
-
 function imageBlock(url, alt, label = "Image") {
-  if (!url) return fallbackImage(label);
+  if (!url) {
+    return `<div class="media-placeholder">${label}</div>`;
+  }
 
   return `
-    <div class="dynamic-image-wrap">
+    <div class="media-image">
       <img src="${url}" alt="${alt || label}" loading="lazy">
     </div>
   `;
 }
 
 function emptyMessage(arText, enText) {
-  return `<p class="empty-message" data-ar="${arText}" data-en="${enText}">${currentLang === "ar" ? arText : enText}</p>`;
+  return `<div class="empty-state" data-ar="${arText}" data-en="${enText}">${currentLang === "ar" ? arText : enText}</div>`;
 }
 
 function renderClinicalWork(items) {
   const grid = document.getElementById("clinicalWorkGrid");
   if (!grid) return;
 
+  allClinicalWorkItems = items;
+
   if (!items.length) {
-    grid.innerHTML = emptyMessage("لا توجد أعمال منشورة حالياً.", "No published clinical work yet.");
+    grid.innerHTML = emptyMessage("لم يتم نشر أي حالات سريرية حتى الآن.", "No clinical work has been published yet.");
     setLanguage(currentLang);
     return;
   }
 
-  grid.innerHTML = items.map((item) => `
-    <article class="case-card dynamic-card">
+  grid.innerHTML = items.map((item, index) => `
+    <article class="media-card compact-case-card">
       ${imageBlock(item.mainImage?.asset?.url || item.xrayImage?.asset?.url || item.beforeImage?.asset?.url, item.title, "Case")}
-      <div>
-        <span>${item.category || "Clinical Work"}</span>
+      <div class="media-content">
+        <span class="media-tag">${item.category || "Clinical Work"}</span>
         <h3>${item.title || "Clinical Work"}</h3>
         <p>${item.description || ""}</p>
-
-        <div class="mini-image-row">
-          ${item.beforeImage?.asset?.url ? `<a href="${item.beforeImage.asset.url}" target="_blank" rel="noopener">Before</a>` : ""}
-          ${item.afterImage?.asset?.url ? `<a href="${item.afterImage.asset.url}" target="_blank" rel="noopener">After</a>` : ""}
-          ${item.xrayImage?.asset?.url ? `<a href="${item.xrayImage.asset.url}" target="_blank" rel="noopener">X-Ray</a>` : ""}
-        </div>
-
-        ${item.videoUrl ? `<a class="text-link" href="${item.videoUrl}" target="_blank" rel="noopener">View Video</a>` : ""}
+        <button class="view-details-btn" type="button" data-case-index="${index}" data-ar="عرض التفاصيل" data-en="View Details">
+          ${currentLang === "ar" ? "عرض التفاصيل" : "View Details"}
+        </button>
       </div>
     </article>
   `).join("");
+
+  document.querySelectorAll("[data-case-index]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.caseIndex);
+      openCaseModal(allClinicalWorkItems[index]);
+    });
+  });
 }
 
 function renderCertificates(items) {
@@ -139,16 +194,16 @@ function renderCertificates(items) {
   if (!grid) return;
 
   if (!items.length) {
-    grid.innerHTML = emptyMessage("لا توجد شهادات منشورة حالياً.", "No published certificates yet.");
+    grid.innerHTML = emptyMessage("لم يتم نشر أي شهادات حتى الآن.", "No certificates have been published yet.");
     setLanguage(currentLang);
     return;
   }
 
   grid.innerHTML = items.map((item) => `
-    <article class="case-card dynamic-card">
+    <article class="media-card">
       ${imageBlock(item.certificateImage?.asset?.url, item.title, "Certificate")}
-      <div>
-        <span>${item.year || "Certificate"}</span>
+      <div class="media-content">
+        <span class="media-tag">${item.year || "Certificate"}</span>
         <h3>${item.title || "Certificate"}</h3>
         <p>${item.issuer || ""}</p>
         <p>${item.description || ""}</p>
@@ -162,16 +217,16 @@ function renderVideos(items) {
   if (!grid) return;
 
   if (!items.length) {
-    grid.innerHTML = emptyMessage("لا توجد فيديوهات منشورة حالياً.", "No published videos yet.");
+    grid.innerHTML = emptyMessage("لم يتم نشر أي فيديوهات حتى الآن.", "No videos have been published yet.");
     setLanguage(currentLang);
     return;
   }
 
   grid.innerHTML = items.map((item) => `
-    <article class="case-card dynamic-card">
+    <article class="media-card">
       ${imageBlock(item.thumbnail?.asset?.url, item.title, "Video")}
-      <div>
-        <span>Video</span>
+      <div class="media-content">
+        <span class="media-tag">Video</span>
         <h3>${item.title || "Video"}</h3>
         <p>${item.description || ""}</p>
         <a class="text-link" href="${item.videoUrl}" target="_blank" rel="noopener">Open Video</a>
@@ -185,22 +240,76 @@ function renderGallery(items) {
   if (!grid) return;
 
   if (!items.length) {
-    grid.innerHTML = emptyMessage("لا توجد صور منشورة حالياً.", "No published images yet.");
+    grid.innerHTML = emptyMessage("لم يتم نشر أي صور حتى الآن.", "No images have been published yet.");
     setLanguage(currentLang);
     return;
   }
 
   grid.innerHTML = items.map((item) => `
-    <article class="case-card dynamic-card">
+    <article class="media-card">
       ${imageBlock(item.image?.asset?.url, item.title, "Gallery")}
-      <div>
-        <span>${item.category || "Gallery"}</span>
+      <div class="media-content">
+        <span class="media-tag">${item.category || "Gallery"}</span>
         <h3>${item.title || "Gallery Image"}</h3>
         <p>${item.caption || ""}</p>
       </div>
     </article>
   `).join("");
 }
+
+function buildCaseModalImage(url, label) {
+  if (!url) return "";
+
+  return `
+    <a class="modal-media-item" href="${url}" target="_blank" rel="noopener">
+      <img src="${url}" alt="${label}" loading="lazy">
+      <span>${label}</span>
+    </a>
+  `;
+}
+
+function openCaseModal(item) {
+  const modal = document.getElementById("caseModal");
+  const body = document.getElementById("caseModalBody");
+
+  if (!modal || !body || !item) return;
+
+  const images = [
+    buildCaseModalImage(item.mainImage?.asset?.url, "Main"),
+    buildCaseModalImage(item.beforeImage?.asset?.url, "Before"),
+    buildCaseModalImage(item.afterImage?.asset?.url, "After"),
+    buildCaseModalImage(item.xrayImage?.asset?.url, "X-Ray"),
+    ...(item.extraImages || []).map((image, index) => buildCaseModalImage(image?.asset?.url, `Image ${index + 1}`)),
+  ].join("");
+
+  body.innerHTML = `
+    <span class="media-tag">${item.category || "Clinical Work"}</span>
+    <h2>${item.title || "Clinical Work"}</h2>
+    <p>${item.description || ""}</p>
+
+    ${images ? `<div class="modal-media-grid">${images}</div>` : ""}
+
+    ${item.videoUrl ? `<a class="btn btn-primary modal-video-link" href="${item.videoUrl}" target="_blank" rel="noopener">Open Video</a>` : ""}
+  `;
+
+  modal.classList.add("open");
+  document.body.classList.add("modal-open");
+}
+
+function closeCaseModal() {
+  const modal = document.getElementById("caseModal");
+
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  document.body.classList.remove("modal-open");
+}
+
+document.addEventListener("click", (event) => {
+  if (event.target.matches("[data-close-modal]")) {
+    closeCaseModal();
+  }
+});
 
 async function loadCasesPageContent() {
   const clinicalWorkGrid = document.getElementById("clinicalWorkGrid");
@@ -219,7 +328,8 @@ async function loadCasesPageContent() {
       mainImage{asset->{url}},
       beforeImage{asset->{url}},
       afterImage{asset->{url}},
-      xrayImage{asset->{url}}
+      xrayImage{asset->{url}},
+      extraImages[]{asset->{url}}
     }`;
 
     const certificatesQuery = `*[_type == "certificate" && showOnWebsite == true] | order(order asc) {
@@ -259,7 +369,7 @@ async function loadCasesPageContent() {
   } catch (error) {
     console.error(error);
 
-    if (clinicalWorkGrid) clinicalWorkGrid.innerHTML = emptyMessage("تعذر تحميل الأعمال حالياً.", "Unable to load clinical work right now.");
+    if (clinicalWorkGrid) clinicalWorkGrid.innerHTML = emptyMessage("تعذر تحميل الحالات حالياً.", "Unable to load clinical work right now.");
     if (certificatesGrid) certificatesGrid.innerHTML = emptyMessage("تعذر تحميل الشهادات حالياً.", "Unable to load certificates right now.");
     if (videosGrid) videosGrid.innerHTML = emptyMessage("تعذر تحميل الفيديوهات حالياً.", "Unable to load videos right now.");
     if (galleryGrid) galleryGrid.innerHTML = emptyMessage("تعذر تحميل الصور حالياً.", "Unable to load images right now.");
@@ -268,20 +378,11 @@ async function loadCasesPageContent() {
   }
 }
 
-setLanguage(currentLang);
-loadCasesPageContent();
-
-
-/* Back to top button */
 const backToTop = document.getElementById("backToTop");
 
 if (backToTop) {
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 450) {
-      backToTop.classList.add("show");
-    } else {
-      backToTop.classList.remove("show");
-    }
+    backToTop.classList.toggle("show", window.scrollY > 450);
   });
 
   backToTop.addEventListener("click", () => {
@@ -291,3 +392,6 @@ if (backToTop) {
     });
   });
 }
+
+setLanguage(currentLang);
+loadCasesPageContent();
