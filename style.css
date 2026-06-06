@@ -1637,3 +1637,136 @@ p {
     background: #f8fbfd;
   }
 }
+
+/* Professional medical typography polish */
+:root {
+  --font-ar: "IBM Plex Sans Arabic", "Cairo", sans-serif;
+  --font-en: "Inter", sans-serif;
+}
+
+body {
+  font-family: var(--font-ar) !important;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+body.en {
+  font-family: var(--font-en) !important;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] .brand strong,
+html[dir="rtl"] .btn,
+html[dir="rtl"] .main-nav,
+html[dir="rtl"] .footer-main h3,
+html[dir="rtl"] .footer-main p,
+html[dir="rtl"] .footer-bottom,
+html[dir="rtl"] .section-label,
+html[dir="rtl"] .eyebrow {
+  font-family: var(--font-ar) !important;
+  letter-spacing: 0 !important;
+}
+
+html[dir="rtl"] .hero h1,
+html[dir="rtl"] .page-hero h1 {
+  font-weight: 700 !important;
+  line-height: 1.18 !important;
+}
+
+html[dir="rtl"] .hero h2 {
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+}
+
+html[dir="rtl"] h2,
+html[dir="rtl"] h3 {
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] p,
+html[dir="rtl"] .hero-text,
+html[dir="rtl"] .page-hero p,
+html[dir="rtl"] .media-card p,
+html[dir="rtl"] .preview-card p,
+html[dir="rtl"] .service-card p,
+html[dir="rtl"] .contact-info-card p,
+html[dir="rtl"] .contact-card p {
+  font-weight: 500 !important;
+  line-height: 1.95 !important;
+}
+
+html[dir="rtl"] .btn,
+html[dir="rtl"] .view-details-btn,
+html[dir="rtl"] .lang-toggle,
+html[dir="rtl"] .menu-toggle,
+html[dir="rtl"] .work-tabs a,
+html[dir="rtl"] .main-nav a {
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .section-label,
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .media-tag,
+html[dir="rtl"] .preview-card span,
+html[dir="rtl"] .service-card span {
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .brand strong {
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .brand small {
+  font-weight: 500 !important;
+}
+
+html[dir="rtl"] .footer-main h3 {
+  font-weight: 700 !important;
+}
+
+html[dir="rtl"] .footer-main p,
+html[dir="rtl"] .footer-instagram,
+html[dir="rtl"] .footer-credit-text,
+html[dir="rtl"] .footer-bottom p {
+  font-weight: 600 !important;
+}
+
+/* English keeps clean modern portfolio typography */
+html[dir="ltr"] .hero h1,
+html[dir="ltr"] .page-hero h1 {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+}
+
+html[dir="ltr"] h2,
+html[dir="ltr"] h3 {
+  font-weight: 800;
+}
+
+/* Mobile Arabic readability */
+@media (max-width: 700px) {
+  html[dir="rtl"] .hero h1,
+  html[dir="rtl"] .page-hero h1 {
+    font-size: 35px;
+    line-height: 1.22 !important;
+  }
+
+  html[dir="rtl"] .hero h2 {
+    font-size: 23px;
+    line-height: 1.42 !important;
+  }
+
+  html[dir="rtl"] .hero-text,
+  html[dir="rtl"] .page-hero p {
+    font-size: 15px;
+    line-height: 2 !important;
+  }
+
+  html[dir="rtl"] .preview-card h3,
+  html[dir="rtl"] .service-card h3,
+  html[dir="rtl"] .media-content h3 {
+    line-height: 1.45 !important;
+  }
+}
